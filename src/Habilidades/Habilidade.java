@@ -1,7 +1,6 @@
 package Habilidades;
 
 public interface Habilidade {
-     void ativar();
-     void desativar();
-     void exibe();
+     public void usaHab(Personagem alvo);
+     void exibe(Personagem alvo);
 }
