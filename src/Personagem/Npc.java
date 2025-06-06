@@ -7,8 +7,8 @@ import java.util.ArrayList;
 public class Npc extends Personagem{
     private String nome, personalidade;
 
-    public Npc(int vidaMax,int vidaAtual, int qntdHab, int defesa, int agilidade, int carisma, ArrayList<Habilidade> habilidades, String tipo, String nome, String personalidade){
-            super(vidaMax, vidaAtual, qntdHab, defesa, agilidade, carisma, habilidades, tipo);
+    public Npc(int vidaMax,int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade> habilidades, String tipo, String nome, String personalidade){
+            super(vidaMax, vidaAtual, qntdHab, defesa, agilidade, habilidades, tipo);
             this.nome = nome;
             this.personalidade = personalidade;
     }

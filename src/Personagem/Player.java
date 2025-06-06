@@ -8,8 +8,8 @@ public class Player extends Personagem {
     private String nome;
     private int winsStreak;
 
-    public Player(int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, int carisma, ArrayList<Habilidade> habilidades, String tipo, String nome, int winsStreak){
-        super(vidaMax, vidaAtual, qntdHab, defesa, agilidade, carisma, habilidades, tipo);
+    public Player(int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade> habilidades, String tipo, String nome, int winsStreak){
+        super(vidaMax, vidaAtual, qntdHab, defesa, agilidade, habilidades, tipo);
         this.nome = nome;
         this.winsStreak = winsStreak;
     }
