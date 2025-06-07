@@ -1,17 +1,21 @@
 package Personagem;
 
 import Habilidades.Habilidade;
+import Habilidades.NomeHabilidade;
+import Habilidades.TipoHabilidade;
 
 import java.util.*;
 
-
 public abstract class Personagem {
-    private int vidaMax, vidaAtual, qntdHab, defesa, agilidade, quantAtaques;
-    private ArrayList<Habilidade> habilidades;
-    private String tipo;
+    private String nome;
+    private int vidaMax, qntdHab, defesa, agilidade, quantAtaques;
+    private double vidaAtual, multDano, multAgil, multDef;
+    private ArrayList<NomeHabilidade> habilidades;
+    private TipoHabilidade tipo;
     private boolean BoolBuffCarac, BoolBuffDano;
 
-    public Personagem(int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade>habilidades, String tipo){
+    public Personagem(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<NomeHabilidade>habilidades, TipoHabilidade tipo){
+        this.nome = nome;
         this.vidaMax = vidaMax;
         this.vidaAtual = vidaAtual;
         this.qntdHab = qntdHab;
@@ -22,40 +26,116 @@ public abstract class Personagem {
         this.quantAtaques = 1;
         this.BoolBuffCarac = false;
         this.BoolBuffDano = false;
+        multDef = multAgil = multDano = 1;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setVidaMax(int vidaMax) {
+        this.vidaMax = vidaMax;
+    }
+
     public int getVidaMax() {
         return vidaMax;
     }
+
+    public void setQntdHab(int qntdHab) {
+        this.qntdHab = qntdHab;
+    }
+
     public int getQntdHab() {
         return qntdHab;
     }
 
-    public ArrayList<Habilidade> getHabilidades() {
-        return habilidades;
+    public void setAgilidade(int agilidade) {
+        this.agilidade = agilidade;
     }
+
     public int getAgilidade() {
         return agilidade;
     }
+
+    public void setDefesa(int defesa) {
+        this.defesa = defesa;
+    }
+
     public int getDefesa() {
         return defesa;
     }
-    public String getTipo() {
+
+    public void setTipo(TipoHabilidade tipo) {
+        this.tipo = tipo;
+    }
+
+    public TipoHabilidade getTipo() {
         return tipo;
     }
-    public int getQuantAtaques() {return  quantAtaques;}
-    public boolean getBoolBuffCarac() {return BoolBuffCarac;}
-    public boolean getBoolBuffDano() {return BoolBuffDano;}
-    public void setAgilidade(int agilidade) {this.agilidade = agilidade;}
-    public void setDefesa(int defesa) {this.defesa = defesa;}
-    public void setQntdHab(int qntdHab) {this.qntdHab = qntdHab;}
-    public void setHabilidades(ArrayList<Habilidade> habilidades) {this.habilidades = habilidades;}
-    public void setTipo(String tipo) {this.tipo = tipo;}
-    public void setVidaAtual(int vidaAtual) {this.vidaAtual = vidaAtual;}
-    public void setVidaMax(int vidaMax) {this.vidaMax = vidaMax;}
-    public void setQuantAtaques(int quantAtaques) { this.quantAtaques = quantAtaques;}
-    public void setBoolBuffCarac(boolean boolBuffCarac) {BoolBuffCarac = boolBuffCarac;}
-    public void setBoolBuffDano(boolean boolBuffDano) {BoolBuffDano = boolBuffDano;}
 
-    public abstract void atacar(Personagem alvo, Habilidade hab);
+    public void setQuantAtaques(int quantAtaques) {
+        this.quantAtaques = quantAtaques;
+    }
 
+    public int getQuantAtaques() {
+        return  quantAtaques;
+    }
+
+    public void setBoolBuffCarac(boolean boolBuffCarac) {
+        BoolBuffCarac = boolBuffCarac;
+    }
+
+    public boolean getBoolBuffCarac() {
+        return BoolBuffCarac;
+    }
+
+    public void setBoolBuffDano(boolean boolBuffDano) {
+        BoolBuffDano = boolBuffDano;
+    }
+
+    public boolean getBoolBuffDano() {
+        return BoolBuffDano;
+    }
+
+    public void setHabilidades(ArrayList<NomeHabilidade> habilidades) {
+        this.habilidades = habilidades;
+    }
+
+    public ArrayList<NomeHabilidade> getHabilidades() {
+        return habilidades;
+    }
+
+    public void setVidaAtual(double vidaAtual) {
+        this.vidaAtual = vidaAtual;
+    }
+
+    public double getVidaAtual() {
+        return vidaAtual;
+    }
+
+    public void setMultDano(double multDano) {
+        this.multDano = multDano;
+    }
+
+    public double getMultDano() {
+        return multDano;
+    }
+
+    public void setMultAgil(double multAgil) {
+        this.multAgil = multAgil;
+    }
+
+    public double getMultAgil() {
+        return multAgil;
+    }
+
+    public void setMultDef(double v) {
+        this.multDef= multDef;
+    }
+
+    public double getMultDef() {
+        return multDef;
+    }
+
+    public abstract void atacar(Personagem dono, Personagem alvo, Habilidade hab);
 }

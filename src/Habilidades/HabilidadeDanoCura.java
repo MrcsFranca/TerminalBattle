@@ -1,9 +1,10 @@
 package Habilidades;
 
+import Personagem.Personagem;
+
 public abstract class HabilidadeDanoCura implements Habilidade {
     private String nome;
-    private int valor;
-    private int turnos;
+    private int valor, turnos;
     private boolean isCura;
     private TipoHabilidade elemento;
 
@@ -18,21 +19,26 @@ public abstract class HabilidadeDanoCura implements Habilidade {
     public int getDano(){
         return valor;
     }
+
+    public void setTurnos(int turnos){
+        this.turnos = turnos;
+    }
+
     public int getTurnos(){
         return turnos;
     }
-    public void setTurnos(int t){
-        this.turnos = t;
+
+    public TipoHabilidade getElemento(){
+        return elemento;
     }
-    public TipoHabilidade getElemento(){return elemento;}
+
     @Override
-    public void usaHab(Personagem alvo, float adicional) {
+    public void usaHab(Personagem dono, Personagem alvo) {
         if(!isCura) {
-            alvo.setVidaAtual(alvo.getVidaAtual() - (valor + adicional));
+            alvo.setVidaAtual(alvo.getVidaAtual() - (valor * dono.getMultDano()));
         }
         else{
-            alvo.setVidaAtual(alvo.getVidaAtual() + valor + adicional);
-
+            alvo.setVidaAtual(alvo.getVidaAtual() + valor);
         }
     }
 

@@ -1,22 +1,22 @@
 package Habilidades.Buff;
 
-public class BuffDebuffCaracteristica extends HabilidadeBuffDebuff{
-    boolean caracteristica; //false para defesa || true para agilidade
-    double multi;
+import Personagem.Personagem;
 
-    public BuffDebuffCaracteristica(TipoBuffDebuff tipo, int turnos, String nome, boolean caracteristica, double multi) {
-        super(tipo, turnos, nome);
+public class BuffDebuffCaracteristica extends HabilidadeBuffDebuff{
+    private boolean caracteristica; //false para defesa || true para agilidade
+    private double multi;
+
+    public BuffDebuffCaracteristica(TipoBuffDebuff tipo, String nome, int turnos, boolean caracteristica, double multi) {
+        super(tipo, nome, turnos);
         this.caracteristica = caracteristica;
         this.multi = multi;
     }
 
-    @Override
-    public void usaHab(Personagem alvo) {
-        alvo.setBoolBuffCarac(true);
+    public void usaHab(Personagem dono, Personagem alvo) {
+        dono.setBoolBuffCarac(true);
         if(caracteristica)
-            alvo.setMultAgil(alvo.getMultAgil() + multi);
+            dono.setMultAgil(alvo.getMultAgil() + multi);
         else
-            alvo.setMultDef(alvo.getMultDef() + multi);
-
+            dono.setMultDef(alvo.getMultDef() + multi);
     }
 }

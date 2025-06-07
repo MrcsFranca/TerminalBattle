@@ -1,16 +1,18 @@
 package Habilidades.Buff;
 
-public class BuffDebuffDano extends HabilidadeBuffDebuff{
-    double multiplicador;
+import Personagem.Personagem;
 
-    public BuffDebuffDano(TipoBuffDebuff tipo, int turnos, String nome, double multiplicador) {
-        super(tipo, turnos, nome);
+public class BuffDebuffDano extends HabilidadeBuffDebuff{
+    private double multiplicador;
+
+    public BuffDebuffDano(TipoBuffDebuff tipo, String nome, int turnos, double multiplicador) {
+        super(tipo, nome, turnos);
         this.multiplicador = multiplicador;
     }
 
     @Override
-    public void usaHab(Personagem alvo) {
+    public void usaHab(Personagem dono, Personagem alvo) {
         alvo.setBoolBuffDano(true);
-        alvo.setMultDano(alvo.getMultDano() + multiplicador);
+        alvo.setMultDano(alvo.getMultDano() * multiplicador);
     }
 }

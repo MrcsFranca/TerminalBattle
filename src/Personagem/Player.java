@@ -1,22 +1,19 @@
 package Personagem;
 
 import Habilidades.Habilidade;
+import Habilidades.NomeHabilidade;
+import Habilidades.TipoHabilidade;
 
 import java.util.ArrayList;
 
 public class Player extends Personagem {
-    private String nome;
     private int winsStreak;
 
-    public Player(int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade> habilidades, String tipo, String nome, int winsStreak){
-        super(vidaMax, vidaAtual, qntdHab, defesa, agilidade, habilidades, tipo);
-        this.nome = nome;
+    public Player(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<NomeHabilidade> habilidades, TipoHabilidade tipo, int winsStreak){
+        super(nome, vidaMax, vidaAtual, qntdHab, defesa, agilidade, habilidades, tipo);
         this.winsStreak = winsStreak;
     }
 
-    public String getNome() {
-        return nome;
-    }
     public int getWinsStreak() {
         return winsStreak;
     }
@@ -25,9 +22,7 @@ public class Player extends Personagem {
         this.winsStreak = winsStreak;
     }
 
-    public void atacar(Personagem alvo, Habilidade hab){
-        hab.ativar(alvo);
+    public void atacar(Personagem dono, Personagem alvo, Habilidade hab){
+        hab.usaHab(dono, alvo);
     }
-
-
 }

@@ -1,21 +1,21 @@
 package Habilidades.Buff;
 
 import Habilidades.Habilidade;
+import Personagem.Personagem;
 
-public class HabilidadeBuffDebuff implements Habilidade {
+public abstract class HabilidadeBuffDebuff implements Habilidade {
     private String nome;
-    private TipoBuffDebuff tipo;
     private int turnos;
+    private TipoBuffDebuff tipo;
 
-    public HabilidadeBuffDebuff(TipoBuffDebuff tipo, int turnos, String nome){
+    public HabilidadeBuffDebuff(TipoBuffDebuff tipo, String nome, int turnos){
         this.tipo = tipo;
-        this.turnos = turnos;
         this.nome = nome;
+        this.turnos = turnos;
     }
 
-
     @Override
-    public void exibe() {
-        System.out.println("Usando habilidade de " + tipo + ": " + nome);
+    public void exibe(Personagem alvo) {
+        System.out.println("Usando habilidade de " + tipo + " no personagem" + alvo.getNome() + ": " + nome);
     }
 }

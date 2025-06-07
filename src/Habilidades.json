@@ -1,0 +1,43 @@
+{
+  "habilidades": [
+    {
+      "DanoBuff": "Dano",
+      "nome": "Fireball",
+      "Valor": 20,
+      "turnos": 1,
+      "IsCura": false,
+      "TipoHabilidade": "fogo"
+    },
+    {
+      "DanoBuff": "Dano",
+      "nome": "Water Heal",
+      "Valor": 5,
+      "turnos": 4,
+      "IsCura": true,
+      "TipoHabilidade": "agua"
+    },
+    {
+      "DanoBuff": "BuffCarac",
+      "nome": "Esquiva",
+      "turnos": 1,
+      "caracteristica": true,
+      "multi": 0.5,
+      "TipoHabilidade": "Normal"
+    },
+    {
+      "DanoBuff": "QuantAtaques",
+      "nome": "Double Golpe",
+      "turnos": 2,
+      "mudanca": 1,
+      "TipoHabilidade": "Lutador"
+    },
+    {
+      "DanoBuff": "BuffDano",
+      "nome": "Aposta Total",
+      "turnos": 3,
+      "multiplicador": 1,
+      "TipoHavilidade": "sorte"
+
+    }
+  ]
+}
