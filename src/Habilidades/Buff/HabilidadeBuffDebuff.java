@@ -1,17 +1,22 @@
 package Habilidades.Buff;
 
 import Habilidades.Habilidade;
+import Habilidades.NomeHabilidadeDano;
 import Personagem.Personagem;
 
 public abstract class HabilidadeBuffDebuff implements Habilidade {
-    private String nome;
+    private NomeHabilidadeDano nome;
     private int turnos;
     private TipoBuffDebuff tipo;
 
-    public HabilidadeBuffDebuff(TipoBuffDebuff tipo, String nome, int turnos){
+    public HabilidadeBuffDebuff(TipoBuffDebuff tipo, NomeHabilidadeDano nome, int turnos){
         this.tipo = tipo;
         this.nome = nome;
         this.turnos = turnos;
+    }
+
+    public NomeHabilidadeDano getNome() {
+        return nome;
     }
 
     @Override

@@ -1,11 +1,12 @@
 package Habilidades.Buff;
 
+import Habilidades.NomeHabilidadeDano;
 import Personagem.Personagem;
 
 public class QuantAtaques extends HabilidadeBuffDebuff {
     private int mudanca;
 
-    public QuantAtaques(TipoBuffDebuff tipo, String nome, int turnos, int mudanca) {
+    public QuantAtaques(TipoBuffDebuff tipo, NomeHabilidadeDano nome, int turnos, int mudanca) {
         super(tipo, nome, turnos);
         this.mudanca = mudanca;
     }

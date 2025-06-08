@@ -1,7 +1,6 @@
 package Personagem;
 
 import Habilidades.Habilidade;
-import Habilidades.NomeHabilidade;
 import Habilidades.TipoHabilidade;
 
 import java.util.*;
@@ -10,11 +9,11 @@ public abstract class Personagem {
     private String nome;
     private int vidaMax, qntdHab, defesa, agilidade, quantAtaques;
     private double vidaAtual, multDano, multAgil, multDef;
-    private ArrayList<NomeHabilidade> habilidades;
+    private ArrayList<Habilidade> habilidades;
     private TipoHabilidade tipo;
     private boolean BoolBuffCarac, BoolBuffDano;
 
-    public Personagem(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<NomeHabilidade>habilidades, TipoHabilidade tipo){
+    public Personagem(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade>habilidades, TipoHabilidade tipo){
         this.nome = nome;
         this.vidaMax = vidaMax;
         this.vidaAtual = vidaAtual;
@@ -97,11 +96,11 @@ public abstract class Personagem {
         return BoolBuffDano;
     }
 
-    public void setHabilidades(ArrayList<NomeHabilidade> habilidades) {
+    public void setHabilidades(ArrayList<Habilidade> habilidades) {
         this.habilidades = habilidades;
     }
 
-    public ArrayList<NomeHabilidade> getHabilidades() {
+    public ArrayList<Habilidade> getHabilidades() {
         return habilidades;
     }
 

@@ -1,7 +1,6 @@
 package Personagem;
 
 import Habilidades.Habilidade;
-import Habilidades.NomeHabilidade;
 import Habilidades.TipoHabilidade;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.ArrayList;
 public class Player extends Personagem {
     private int winsStreak;
 
-    public Player(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<NomeHabilidade> habilidades, TipoHabilidade tipo, int winsStreak){
+    public Player(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade> habilidades, TipoHabilidade tipo, int winsStreak){
         super(nome, vidaMax, vidaAtual, qntdHab, defesa, agilidade, habilidades, tipo);
         this.winsStreak = winsStreak;
     }

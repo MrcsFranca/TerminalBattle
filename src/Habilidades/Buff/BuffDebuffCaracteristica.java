@@ -1,12 +1,13 @@
 package Habilidades.Buff;
 
+import Habilidades.NomeHabilidadeDano;
 import Personagem.Personagem;
 
 public class BuffDebuffCaracteristica extends HabilidadeBuffDebuff{
     private boolean caracteristica; //false para defesa || true para agilidade
     private double multi;
 
-    public BuffDebuffCaracteristica(TipoBuffDebuff tipo, String nome, int turnos, boolean caracteristica, double multi) {
+    public BuffDebuffCaracteristica(TipoBuffDebuff tipo, NomeHabilidadeDano nome, int turnos, boolean caracteristica, double multi) {
         super(tipo, nome, turnos);
         this.caracteristica = caracteristica;
         this.multi = multi;

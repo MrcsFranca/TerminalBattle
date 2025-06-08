@@ -10,7 +10,7 @@
     },
     {
       "DanoBuff": "Dano",
-      "nome": "Water Heal",
+      "nome": "WaterHeal",
       "Valor": 5,
       "turnos": 4,
       "IsCura": true,
@@ -26,14 +26,14 @@
     },
     {
       "DanoBuff": "QuantAtaques",
-      "nome": "Double Golpe",
+      "nome": "DoubleGolpe",
       "turnos": 2,
       "mudanca": 1,
       "TipoHabilidade": "Lutador"
     },
     {
       "DanoBuff": "BuffDano",
-      "nome": "Aposta Total",
+      "nome": "ApostaTotal",
       "turnos": 3,
       "multiplicador": 1,
       "TipoHavilidade": "sorte"

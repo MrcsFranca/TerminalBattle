@@ -2,13 +2,14 @@ package Habilidades;
 
 import Personagem.Personagem;
 
-public abstract class HabilidadeDanoCura implements Habilidade {
-    private String nome;
-    private int valor, turnos;
+public class HabilidadeDanoCura implements Habilidade {
+    private Enum nome;
+    private int turnos;
+    private double valor;
     private boolean isCura;
     private TipoHabilidade elemento;
 
-    public HabilidadeDanoCura(int valor, int turnos, String nome, boolean isCura, TipoHabilidade elemento ){
+    public <T extends Enum> HabilidadeDanoCura(double valor, int turnos, T nome, boolean isCura, TipoHabilidade elemento ){
         this.valor = valor;
         this.turnos = turnos;
         this.nome = nome;
@@ -16,7 +17,15 @@ public abstract class HabilidadeDanoCura implements Habilidade {
         this.elemento = elemento;
     }
 
-    public int getDano(){
+    public Enum getNome() {
+        return nome;
+    }
+
+    public boolean getIsCura() {
+        return isCura;
+    }
+
+    public double getDano(){
         return valor;
     }
 
@@ -38,7 +47,11 @@ public abstract class HabilidadeDanoCura implements Habilidade {
             alvo.setVidaAtual(alvo.getVidaAtual() - (valor * dono.getMultDano()));
         }
         else{
-            alvo.setVidaAtual(alvo.getVidaAtual() + valor);
+            if((valor + alvo.getVidaAtual()) >= alvo.getVidaMax()) {
+                alvo.setVidaAtual(alvo.getVidaMax());
+            } else {
+                alvo.setVidaAtual(alvo.getVidaAtual() + valor);
+            }
         }
     }
 

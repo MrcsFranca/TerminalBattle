@@ -11,7 +11,8 @@
         "Fireball",
         "Esquiva"
       ],
-      "tipo": "fogo"
+      "tipo": "fogo",
+      "winstreak": 2
     },
     {
       "nome": "Pescador",
@@ -25,7 +26,8 @@
         "WaterHeal",
         "Esquiva"
       ],
-      "tipo": "agua"
+      "tipo": "agua",
+      "winstreak": 5
     }
   ]
 }
