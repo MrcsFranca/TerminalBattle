@@ -7,17 +7,16 @@ import java.util.*;
 
 public abstract class Personagem {
     private String nome;
-    private int vidaMax, qntdHab, defesa, agilidade, quantAtaques;
+    private int vidaMax, defesa, agilidade, quantAtaques;
     private double vidaAtual, multDano, multAgil, multDef;
     private ArrayList<Habilidade> habilidades;
     private TipoHabilidade tipo;
     private boolean BoolBuffCarac, BoolBuffDano;
 
-    public Personagem(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade>habilidades, TipoHabilidade tipo){
+    public Personagem(String nome, int vidaMax, int vidaAtual, int defesa, int agilidade, ArrayList<Habilidade>habilidades, TipoHabilidade tipo){
         this.nome = nome;
         this.vidaMax = vidaMax;
         this.vidaAtual = vidaAtual;
-        this.qntdHab = qntdHab;
         this.defesa = defesa;
         this.agilidade = agilidade;
         this.habilidades = habilidades;
@@ -32,20 +31,8 @@ public abstract class Personagem {
         return nome;
     }
 
-    public void setVidaMax(int vidaMax) {
-        this.vidaMax = vidaMax;
-    }
-
     public int getVidaMax() {
         return vidaMax;
-    }
-
-    public void setQntdHab(int qntdHab) {
-        this.qntdHab = qntdHab;
-    }
-
-    public int getQntdHab() {
-        return qntdHab;
     }
 
     public void setAgilidade(int agilidade) {

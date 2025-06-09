@@ -1,1 +1,6 @@
-COdigo feito por "Querubas" no dia 03/06
+# TerminalBattle
+Desenvolvido por:
+- Marcos França
+- Cauã Monteiro
+- Lucas Polidorio
+- Pedro Ribas

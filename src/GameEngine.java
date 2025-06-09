@@ -1,6 +1,7 @@
 import Habilidades.Habilidade;
 import Habilidades.HabilidadeDanoCura;
 import Personagem.Personagem;
+import Personagem.Player;
 import Personagem.Gerador;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -8,8 +9,11 @@ import java.util.Random;
 
 public class GameEngine {
     public static void run(Personagem player) {
+        Scanner scanner = new Scanner(System.in);
         Gerador gerador = new Gerador();
+        UI ui = new UI();
         int winstreak = 0, escolha, auxEscolha;
+
         while(player.getVidaAtual() > 0 && winstreak < 5) {
             System.out.println("----- "+ (winstreak + 1) + "ª batalha -----");
 
@@ -17,166 +21,180 @@ public class GameEngine {
             System.out.println(player.getNome() + " está batalhando contra " + npc.getNome());
 
             while(npc.getVidaAtual() > 0) {
-                escolha = 1;
-                System.out.printf("\nVida de " + player.getNome() + ": %.2f\n" + "\nVida de " + npc.getNome() + ": %.2f\n", player.getVidaAtual(), npc.getVidaAtual());
-                System.out.println();
-
-                System.out.println(player.getNome() + ", escolha uma de suas habilidades...");
-                for(Habilidade elementos : player.getHabilidades()) {
-                    System.out.println("[" + escolha + "] " + elementos.getNome());
-                    escolha++;
-                }
+                ui.personagemStats(player);
+                ui.personagemStats(npc);
 
                 // Usar try catch aqui e tentar deixar menos estruturado
-                acaoJogador(player, npc);
-
-
-                if(npc.getVidaAtual() > 0) {
+                if(player.getAgilidade() >= npc.getAgilidade()) {
+                    ui.escolherHabilidades(player);
+                    acaoJogador(player, npc);
+                    if(npc.getVidaAtual() > 0) {
+                        acaoNPC(player, npc);
+                    }
+                } else if(npc.getAgilidade() > player.getAgilidade()) {
                     acaoNPC(player, npc);
+                    ui.escolherHabilidades(player);
+                    if(player.getVidaAtual() > 0) {
+                        acaoJogador(player, npc);
+                    }
                 }
-                System.out.println(((HabilidadeDanoCura) (npc.getHabilidades().get(0))).getDano());
             }
 
-            System.out.println(npc.getNome() + " foi derrotado por " + player.getNome());
+            if(player.getVidaAtual() > 0) {
+                ui.absorverHabilidade(player, npc);
 
-            System.out.println("Escolha uma das habilidades de " + npc.getNome() + " para ser sua (0 - não absorve nova habilidade)");
-            escolha = 1;
-            for(Habilidade elementos : npc.getHabilidades()) {
-                System.out.println("[" + escolha + "] " + elementos.getNome());
-                escolha++;
-            }
-            //try catch aqui para verificar se escolha é diferente do permitido (quant de habilidades que npc tem)
-            Scanner scanner = new Scanner(System.in);
-            escolha = scanner.nextInt();
-            if(escolha != 0) {
-                ArrayList<Habilidade> habilidades = player.getHabilidades();
-                if(player.getHabilidades().size() == 4) {
-                    auxEscolha = escolha;
-                    System.out.println("Escolha uma de suas habilidades para substituir");
-                    escolha = scanner.nextInt();
-                    habilidades.remove(escolha - 1);
-                    habilidades.add(escolha - 1, npc.getHabilidades().get(auxEscolha - 1));
+                //try catch aqui para verificar se escolha é diferente do permitido (quant de habilidades que npc tem)
+                escolha = scanner.nextInt();
+                if(escolha != 0) {
+                    ArrayList<Habilidade> habilidades = player.getHabilidades();
+                    if(player.getHabilidades().size() == 4) {
+                        auxEscolha = escolha;
+                        System.out.println("Escolha uma de suas habilidades para substituir");
+                        escolha = scanner.nextInt();
+                        habilidades.remove(escolha - 1);
+                        habilidades.add(escolha - 1, npc.getHabilidades().get(auxEscolha - 1));
+                    } else {
+                        habilidades.add(npc.getHabilidades().get(escolha - 1));
+                    }
+                    player.setHabilidades(habilidades);
                 } else {
-                    habilidades.add(npc.getHabilidades().get(escolha - 1));
+                    System.out.println("Escolha um de seus atributos para melhorar");
+                    System.out.println("[1] Agilidade\n[2] Defesa\n[3] Recarregar as habilidades em 5\n");
+                    escolha = scanner.nextInt();
+                    switch(escolha) {
+                        case 1:
+                            player.setAgilidade(player.getAgilidade() + npc.getAgilidade());
+                            break;
+                        case 2:
+                            player.setDefesa(player.getDefesa() + npc.getDefesa());
+                            break;
+                        case 3:
+                            for(Habilidade elementos : player.getHabilidades()) {
+                                ((HabilidadeDanoCura) elementos).setQntdHab(5);
+                            }
+                            break;
+                        default:
+                            System.out.println("Você escolheu não melhorar nada");
+                    }
                 }
-                player.setHabilidades(habilidades);
+                winstreak++;
+            } else {
+                ((Player) player).setWinStreak(winstreak);
+                System.out.println("Você perdeu com uma winstreak de: " + ((Player) player).getWinStreak());
             }
-
-            winstreak++;
         }
     }
 
     public static void acaoJogador(Personagem player, Personagem npc) {
-        int escolha = 0;
-        HabilidadeDanoCura verificaCura;
+        int escolha = 0, qntdHab = 0;
+        HabilidadeDanoCura verificaHabilidade;
         Scanner scanner = new Scanner(System.in);
         escolha = scanner.nextInt();
         if((escolha == 1)) {
-            verificaCura = (HabilidadeDanoCura) player.getHabilidades().get(0);
-            if(verificaCura.getIsCura()) {
-                player.atacar(player, player, player.getHabilidades().get(0));
-                verificaCura.exibe(player);
+            verificaHabilidade = (HabilidadeDanoCura) player.getHabilidades().get(0);
+            if(verificaHabilidade.getQntdHab() > 0) {
+                if(verificaHabilidade.getIsCura()) {
+                    player.atacar(player, player, player.getHabilidades().get(0));
+                    verificaHabilidade.exibe(player);
+                } else {
+                    player.atacar(player, npc, player.getHabilidades().get(0));
+                    verificaHabilidade.exibe(npc);
+                }
+                qntdHab = ((HabilidadeDanoCura) player.getHabilidades().get(0)).getQntdHab();
+                ((HabilidadeDanoCura) player.getHabilidades().get(0)).setQntdHab(--qntdHab);
             } else {
-                player.atacar(player, npc, player.getHabilidades().get(0));
-                verificaCura.exibe(npc);
+                System.out.println(player.getHabilidades().get(0).getNome() + " acabou e você não consegue mais usar");
             }
         } else if((escolha == 2) && (player.getHabilidades().size() >= 2)) {
-            verificaCura = (HabilidadeDanoCura) player.getHabilidades().get(1);
-            if(verificaCura.getIsCura()) {
-                player.atacar(player, player, player.getHabilidades().get(1));
-                verificaCura.exibe(player);
+            verificaHabilidade = (HabilidadeDanoCura) player.getHabilidades().get(1);
+            if(verificaHabilidade.getQntdHab() > 0) {
+                if(verificaHabilidade.getIsCura()) {
+                    player.atacar(player, player, player.getHabilidades().get(1));
+                    verificaHabilidade.exibe(player);
+                } else {
+                    player.atacar(player, npc, player.getHabilidades().get(1));
+                    verificaHabilidade.exibe(npc);
+                }
+                qntdHab = ((HabilidadeDanoCura) player.getHabilidades().get(1)).getQntdHab();
+                ((HabilidadeDanoCura) player.getHabilidades().get(1)).setQntdHab(--qntdHab);
             } else {
-                player.atacar(player, npc, player.getHabilidades().get(1));
-                verificaCura.exibe(npc);
+                System.out.println(player.getHabilidades().get(1).getNome() + " acabou e você não consegue mais usar");
             }
         } else if((escolha == 3) && (player.getHabilidades().size() >= 3)) {
-            verificaCura = (HabilidadeDanoCura) player.getHabilidades().get(2);
-            if(verificaCura.getIsCura()) {
-                player.atacar(player, player, player.getHabilidades().get(2));
-                verificaCura.exibe(player);
+            verificaHabilidade = (HabilidadeDanoCura) player.getHabilidades().get(2);
+            if(verificaHabilidade.getQntdHab() > 0) {
+                if(verificaHabilidade.getIsCura()) {
+                    player.atacar(player, player, player.getHabilidades().get(2));
+                    verificaHabilidade.exibe(player);
+                } else {
+                    player.atacar(player, npc, player.getHabilidades().get(2));
+                    verificaHabilidade.exibe(npc);
+                }
+                qntdHab = ((HabilidadeDanoCura) player.getHabilidades().get(2)).getQntdHab();
+                ((HabilidadeDanoCura) player.getHabilidades().get(2)).setQntdHab(--qntdHab);
             } else {
-                player.atacar(player, npc, player.getHabilidades().get(2));
-                verificaCura.exibe(npc);
+                System.out.println(player.getHabilidades().get(2).getNome() + " acabou e você não consegue mais usar");
             }
         } else if((escolha == 4) && (player.getHabilidades().size() == 4)) {
-            verificaCura = (HabilidadeDanoCura) player.getHabilidades().get(3);
-            if(verificaCura.getIsCura()) {
-                player.atacar(player, player, player.getHabilidades().get(3));
-                verificaCura.exibe(player);
+            verificaHabilidade = (HabilidadeDanoCura) player.getHabilidades().get(3);
+            if(verificaHabilidade.getQntdHab() > 0) {
+                if(verificaHabilidade.getIsCura()) {
+                    player.atacar(player, player, player.getHabilidades().get(3));
+                    verificaHabilidade.exibe(player);
+                } else {
+                    player.atacar(player, npc, player.getHabilidades().get(3));
+                    verificaHabilidade.exibe(npc);
+                }
+                qntdHab = ((HabilidadeDanoCura) player.getHabilidades().get(3)).getQntdHab();
+                ((HabilidadeDanoCura) player.getHabilidades().get(3)).setQntdHab(--qntdHab);
             } else {
-                player.atacar(player, npc, player.getHabilidades().get(3));
-                verificaCura.exibe(npc);
+                System.out.println(player.getHabilidades().get(3).getNome() + " acabou e você não consegue mais usar");
             }
         } else {
-            System.out.println("Você não possui esse habilidade");
+            System.out.println("Você não possui essa habilidade");
         }
     }
 
     public static void acaoNPC(Personagem player, Personagem npc) {
-        HabilidadeDanoCura verificaCura;
+        HabilidadeDanoCura verificaHabilidade;
         Random random = new Random();
         int acao = random.nextInt(npc.getHabilidades().size());
         if((acao == 0)) {
-            verificaCura = (HabilidadeDanoCura) npc.getHabilidades().get(0);
-            if(verificaCura.getIsCura()) {
+            verificaHabilidade = (HabilidadeDanoCura) npc.getHabilidades().get(0);
+            if(verificaHabilidade.getIsCura()) {
                 npc.atacar(npc, npc, npc.getHabilidades().get(0));
-                verificaCura.exibe(npc);
+                verificaHabilidade.exibe(npc);
             } else {
                 npc.atacar(npc, player, npc.getHabilidades().get(0));
-                verificaCura.exibe(player);
+                verificaHabilidade.exibe(player);
             }
         } else if((acao == 1) && (npc.getHabilidades().size() >= 2)) {
-            verificaCura = (HabilidadeDanoCura) npc.getHabilidades().get(1);
-            if(verificaCura.getIsCura()) {
+            verificaHabilidade = (HabilidadeDanoCura) npc.getHabilidades().get(1);
+            if(verificaHabilidade.getIsCura()) {
                 npc.atacar(npc, npc, npc.getHabilidades().get(1));
-                verificaCura.exibe(npc);
+                verificaHabilidade.exibe(npc);
             } else {
                 npc.atacar(npc, player, npc.getHabilidades().get(1));
-                verificaCura.exibe(player);
+                verificaHabilidade.exibe(player);
             }
         } else if((acao == 2) && (npc.getHabilidades().size() >= 3)) {
-            verificaCura = (HabilidadeDanoCura) npc.getHabilidades().get(2);
-            if(verificaCura.getIsCura()) {
+            verificaHabilidade = (HabilidadeDanoCura) npc.getHabilidades().get(2);
+            if(verificaHabilidade.getIsCura()) {
                 npc.atacar(npc, npc, npc.getHabilidades().get(2));
-                verificaCura.exibe(npc);
+                verificaHabilidade.exibe(npc);
             } else {
                 npc.atacar(npc, player, npc.getHabilidades().get(2));
-                verificaCura.exibe(player);
+                verificaHabilidade.exibe(player);
             }
         } else if((acao == 3) && (npc.getHabilidades().size() == 4)) {
-            verificaCura = (HabilidadeDanoCura) npc.getHabilidades().get(3);
-            if(verificaCura.getIsCura()) {
+            verificaHabilidade = (HabilidadeDanoCura) npc.getHabilidades().get(3);
+            if(verificaHabilidade.getIsCura()) {
                 npc.atacar(npc, npc, npc.getHabilidades().get(3));
-                verificaCura.exibe(npc);
+                verificaHabilidade.exibe(npc);
             } else {
                 npc.atacar(npc, player, npc.getHabilidades().get(3));
-                verificaCura.exibe(player);
+                verificaHabilidade.exibe(player);
             }
         }
     }
 }
-/*
-            System.out.println(player.getNome());
-            System.out.println(player.getTipo());
-            System.out.println(player.getHabilidades());
-            System.out.println(player.getVidaMax());
-            System.out.println(player.getVidaAtual());
-            System.out.println(player.getDefesa());
-            System.out.println(player.getAgilidade());
-            System.out.println(player.getMultDano());
-            System.out.println(player.getMultDef());
-            System.out.println(player.getMultAgil());
-            System.out.println(player.getQntdHab());
-
-            System.out.println(npc.getNome());
-            System.out.println(npc.getTipo());
-            System.out.println(npc.getHabilidades());
-            System.out.println(npc.getVidaMax());
-            System.out.println(npc.getVidaAtual());
-            System.out.println(npc.getDefesa());
-            System.out.println(npc.getAgilidade());
-            System.out.println(npc.getMultDano());
-            System.out.println(npc.getMultDef());
-            System.out.println(npc.getMultAgil());
-            System.out.println(npc.getQntdHab());
-*/

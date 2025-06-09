@@ -9,15 +9,15 @@ public class Player extends Personagem {
     private int winsStreak;
 
     public Player(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade> habilidades, TipoHabilidade tipo, int winsStreak){
-        super(nome, vidaMax, vidaAtual, qntdHab, defesa, agilidade, habilidades, tipo);
+        super(nome, vidaMax, vidaAtual, defesa, agilidade, habilidades, tipo);
         this.winsStreak = winsStreak;
     }
 
-    public int getWinsStreak() {
+    public int getWinStreak() {
         return winsStreak;
     }
 
-    public void setWinsStreak(int winsStreak) {
+    public void setWinStreak(int winsStreak) {
         this.winsStreak = winsStreak;
     }
 

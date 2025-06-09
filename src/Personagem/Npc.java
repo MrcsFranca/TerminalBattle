@@ -9,7 +9,7 @@ public class Npc extends Personagem{
     private String nome, personalidade;
 
     public Npc(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade> habilidades, TipoHabilidade tipo){
-            super(nome, vidaMax, vidaAtual, qntdHab, defesa, agilidade, habilidades, tipo);
+            super(nome, vidaMax, vidaAtual, defesa, agilidade, habilidades, tipo);
             this.nome = nome;
     }
 
