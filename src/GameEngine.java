@@ -1,3 +1,5 @@
+import Habilidades.Buff.BuffDebuffDano;
+import Habilidades.Buff.QuantAtaques;
 import Habilidades.Habilidade;
 import Habilidades.HabilidadeDanoCura;
 import Personagem.Personagem;
@@ -10,16 +12,19 @@ public class GameEngine {
     public static void run(Personagem player) {
         Scanner scanner = new Scanner(System.in);
         Gerador gerador = new Gerador();
+        Verificador verificador = new Verificador();
         UI ui = new UI();
         int winstreak = 0, escolha, auxEscolha;
+        boolean TemHabilidade = true;
 
         while(player.getVidaAtual() > 0 && winstreak < 5) {
+            ui.limpar();
             System.out.println("----- "+ (winstreak + 1) + "ª batalha -----");
 
             Personagem npc = gerador.geraNPC();
             System.out.println(player.getNome() + " está batalhando contra " + npc.getNome());
 
-            while(player.getVidaAtual() > 0 && npc.getVidaAtual() > 0) {
+            while(player.getVidaAtual() > 0 && npc.getVidaAtual() > 0 && TemHabilidade) {
                 ui.personagemStats(player);
                 ui.personagemStats(npc);
 
@@ -27,31 +32,25 @@ public class GameEngine {
                 if(player.getAgilidade() >= npc.getAgilidade()) {
                     ui.escolherHabilidades(player);
                     Acoes.acaoJogador(player, npc);
+                    System.out.println();
                     if(npc.getVidaAtual() > 0) {
                         Acoes.acaoNPC(player, npc);
+                        System.out.println();
                     }
-                } else if(npc.getAgilidade() > player.getAgilidade()) {
-                    Acoes.acaoNPC(player, npc);
+                } else {
                     ui.escolherHabilidades(player);
+                    Acoes.acaoNPC(player, npc);
+                    System.out.println();
                     if(player.getVidaAtual() > 0) {
                         Acoes.acaoJogador(player, npc);
+                        System.out.println();
                     }
                 }
 
-                int auxQntdHabilidade = 0;
-                for(Habilidade elementos : player.getHabilidades()) {
-                    if(((HabilidadeDanoCura) elementos).getQntdHab() > 0) {
-                        auxQntdHabilidade = 1;
-                        break;
-                    }
-                }
-                if(auxQntdHabilidade == 0) {
-                    System.out.println("Suas habilidades acabaram e você não consegue mais prosseguir\n Você perdeu.");
-                    player.setVidaAtual(0);
-                }
+                TemHabilidade = verificador.verificaTodasHabilidadesZeradas(player);
             }
 
-            if(player.getVidaAtual() > 0) {
+            if(player.getVidaAtual() > 0 && TemHabilidade) {
                 ui.absorverHabilidade(player, npc);
 
                 //try catch aqui para verificar se escolha é diferente do permitido (quant de habilidades que npc tem)
@@ -69,8 +68,7 @@ public class GameEngine {
                     }
                     player.setHabilidades(habilidades);
                 } else {
-                    System.out.println("Escolha um de seus atributos para melhorar");
-                    System.out.println("[1] Agilidade\n[2] Defesa\n[3] Recarregar as habilidades em 5\n");
+                    ui.editarAtributos();
                     escolha = scanner.nextInt();
                     switch(escolha) {
                         case 1:
@@ -81,7 +79,13 @@ public class GameEngine {
                             break;
                         case 3:
                             for(Habilidade elementos : player.getHabilidades()) {
-                                ((HabilidadeDanoCura) elementos).setQntdHab(5);
+                                if(elementos.getClass() == HabilidadeDanoCura.class) {
+                                    ((HabilidadeDanoCura) elementos).setQntdHab(((HabilidadeDanoCura) elementos).getQntdHab() + 5);
+                                } else if(elementos.getClass() == BuffDebuffDano.class) {
+                                    ((BuffDebuffDano) elementos).setQntdHab(((BuffDebuffDano) elementos).getQntdHab() + 5);
+                                } else if(elementos.getClass() == QuantAtaques.class) {
+                                    ((QuantAtaques) elementos).setQntdHab(((QuantAtaques) elementos).getQntdHab() + 5);
+                                }
                             }
                             break;
                         default:
@@ -90,8 +94,7 @@ public class GameEngine {
                 }
                 winstreak++;
             } else {
-                ((Player) player).setWinStreak(winstreak);
-                System.out.println("Você perdeu com uma winstreak de: " + ((Player) player).getWinStreak());
+                ui.perdeu(player, TemHabilidade, winstreak);
             }
         }
     }

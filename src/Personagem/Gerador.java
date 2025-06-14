@@ -1,6 +1,11 @@
 package Personagem;
 
 import Habilidades.*;
+import Habilidades.Buff.BuffDebuffDano;
+import Habilidades.Buff.NomeHabilidadeBuffDebuff;
+import Habilidades.Buff.QuantAtaques;
+import Habilidades.Buff.TipoBuffDebuff;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
@@ -8,7 +13,7 @@ import java.util.Random;
 public class Gerador {
     Random random = new Random();
     private double valorCura = 5, valorDano = 10;
-    private int valorVida = 10, valorDefesa = 10, valorAgilidade = 2, auxVida = 0, auxDefesa = 0, auxAgilidade = 0, quantHab = 0;
+    private int valorVida = 10, valorDefesa = 5, valorAgilidade = 2, auxVida = 0, auxDefesa = 0, auxAgilidade = 0, quantHab = 0;
 
     public Personagem geraPlayer() {
         String nome;
@@ -18,14 +23,18 @@ public class Gerador {
         Scanner scanner = new Scanner(System.in);
         nome = scanner.nextLine();
 
-        Habilidade hab = new HabilidadeDanoCura(10, 1, NomeHabilidadeDano.Fireball, false, TipoHabilidade.fogo, 5);
-        Habilidade hab1 = new HabilidadeDanoCura(5, 1, NomeHabilidadeCura.WaterHeal, true, TipoHabilidade.agua, 5);
+        Habilidade hab = new HabilidadeDanoCura(10,  NomeHabilidadeDano.Fireball, false, TipoHabilidade.fogo, 5);
+        Habilidade hab1 = new HabilidadeDanoCura(5, NomeHabilidadeCura.WaterHeal, true, TipoHabilidade.agua, 5);
+        Habilidade hab3 = new BuffDebuffDano(TipoBuffDebuff.BuffDano, NomeHabilidadeBuffDebuff.AumentaDano,  1.2, 5);
+        Habilidade hab4 = new QuantAtaques(TipoBuffDebuff.MultiAtaques, NomeHabilidadeBuffDebuff.AumentaHabilidades, 5);
 
         ArrayList<Habilidade> habilidade = new ArrayList<Habilidade>();
         habilidade.add(hab);
         habilidade.add(hab1);
+        habilidade.add(hab3);
+        habilidade.add(hab4);
 
-        return new Player(nome, 50, 50, 2, 10, 5, habilidade, TipoHabilidade.fogo, 0);
+        return new Player(nome, 50, 50, 2, 5, 5, habilidade, TipoHabilidade.fogo, 0);
 
     }
     
@@ -47,11 +56,11 @@ public class Gerador {
             if(isCura) {
                 mult = random.nextDouble(0.4);
                 valorCura += (valorCura * mult);
-                hab = new HabilidadeDanoCura(valorCura, 1, habilidadeCuraAleatoria, true, tipoAleatorio, 5);
+                hab = new HabilidadeDanoCura(valorCura, habilidadeCuraAleatoria, true, tipoAleatorio, 5);
             } else {
                 mult = random.nextDouble(0.2);
                 valorDano += (valorDano * mult);
-                hab = new HabilidadeDanoCura(valorDano, 1, habilidadeDanoAleatoria, false, tipoAleatorio, 5);
+                hab = new HabilidadeDanoCura(valorDano, habilidadeDanoAleatoria, false, tipoAleatorio, 5);
             }
             habilidade.add(hab);
             quantHab--;
