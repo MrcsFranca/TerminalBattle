@@ -1,6 +1,8 @@
 import Personagem.*;
 import Habilidades.*;
-
+/**
+ * Classe que abriga a main para inicializar o jogo
+ */
 public class TerminalBattleApp {
     public static void main(String[] args) {
 

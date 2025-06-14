@@ -3,9 +3,16 @@ import Personagem.Personagem;
 
 import java.util.Random;
 import java.util.Scanner;
-
+/**
+ * Classe que define as ações que o NPC e o personagem jogável podem fazer
+ */
 public class Acoes {
-
+    /**
+     * Metodo que define a ação de um Player, utilizando uma habilidade
+     * @author Marcos França
+     * @param player É o objeto que o método recebe que define o jogador que vai usar uma habilidade
+     * @param npc É o objeto que o método recebe que define em qual NPC o jogador vai realizar uma ação
+     */
     public static void acaoJogador(Personagem player, Personagem npc) {
         Verificador verificador = new Verificador();
         int escolha = 0;
@@ -24,7 +31,12 @@ public class Acoes {
             System.out.println("Você não possui essa habilidade");
         }
     }
-
+    /**
+     * Metodo que define a ação de um NPC, utilizando uma habilidade
+     * @author Marcos França
+     * @param player É o objeto que o método recebe que define em quem o NPC vai usar uma habilidade
+     * @param npc É o objeto que o método recebe que define qual NPC vai realizar uma acao
+     */
     public static void acaoNPC(Personagem player, Personagem npc) {
         Verificador verificador = new Verificador();
         Random random = new Random();

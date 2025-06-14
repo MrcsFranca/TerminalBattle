@@ -7,8 +7,16 @@ import Personagem.Player;
 import Personagem.Gerador;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+ * Esta classe define o funcionamento da logica de jogo, utilizando metodos e classes ja desenvolvidos
+ */
 public class GameEngine {
+    /**
+     * Metodo estatico para inicializar o jogo e sua logica
+     * @author Marcos França
+     * @param player O objeto que representa o player que estamos jogando
+     * @exception
+     */
     public static void run(Personagem player) {
         Scanner scanner = new Scanner(System.in);
         Gerador gerador = new Gerador();

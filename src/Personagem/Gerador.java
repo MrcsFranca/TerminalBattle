@@ -9,12 +9,19 @@ import Habilidades.Buff.TipoBuffDebuff;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Random;
-
+/**
+ * Classe que gera os atributos dos personagens que serao usados no jogo
+ */
 public class Gerador {
     Random random = new Random();
     private double valorCura = 5, valorDano = 10;
     private int valorVida = 10, valorDefesa = 5, valorAgilidade = 2, auxVida = 0, auxDefesa = 0, auxAgilidade = 0, quantHab = 0;
 
+    /**
+     * Classe que gera um objeto de um personagem jogavel
+     * @author Marcos França
+     * @return retorna um objeto de um Personagem jogavel
+     */
     public Personagem geraPlayer() {
         String nome;
         int qntdHab, defesa, agilidade;
@@ -37,7 +44,12 @@ public class Gerador {
         return new Player(nome, 50, 50, 2, 5, 5, habilidade, TipoHabilidade.fogo, 0);
 
     }
-    
+
+    /**
+     * Classe que gera um objeto de um personagem NPC
+     * @author Marcos França
+     * @return retorna um objeto de um Personagem NPC
+     */
     public Personagem geraNPC() {
         double mult = 0;
         boolean isCura;

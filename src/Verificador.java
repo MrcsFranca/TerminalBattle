@@ -4,6 +4,9 @@ import Habilidades.Habilidade;
 import Habilidades.HabilidadeDanoCura;
 import Personagem.Personagem;
 
+/**
+ * Classe que verifica
+ */
 public class Verificador {
     public boolean verificaTodasHabilidadesZeradas(Personagem player) {
         boolean temHabilidade = false;
