@@ -1,3 +1,7 @@
+import Excecoes.EscolhaInvalida;
+import Excecoes.HabilidadeZerada;
+import Habilidades.Buff.BuffDebuffDano;
+import Habilidades.Buff.QuantAtaques;
 import Habilidades.HabilidadeDanoCura;
 import Personagem.Personagem;
 
@@ -16,8 +20,34 @@ public class Acoes {
     public static void acaoJogador(Personagem player, Personagem npc) {
         Verificador verificador = new Verificador();
         int escolha = 0;
+        boolean escolhaValida;
         Scanner scanner = new Scanner(System.in);
-        escolha = scanner.nextInt();
+
+        do {
+            String entrada = scanner.nextLine();
+            escolhaValida = true;
+            try {
+                escolha = Integer.parseInt(entrada);
+                if(escolha < 1 || escolha > player.getHabilidades().size()) {
+                    throw new EscolhaInvalida(escolha);
+                } else if((player.getHabilidades().get(escolha-1).getClass() == HabilidadeDanoCura.class) && ((HabilidadeDanoCura)player.getHabilidades().get(escolha-1)).getQntdHab() == 0) {
+                    throw new HabilidadeZerada();
+                } else if((player.getHabilidades().get(escolha-1).getClass() == BuffDebuffDano.class) && ((BuffDebuffDano)player.getHabilidades().get(escolha-1)).getQntdHab() == 0) {
+                    throw new HabilidadeZerada();
+                } else if((player.getHabilidades().get(escolha-1).getClass() == QuantAtaques.class) && ((QuantAtaques)player.getHabilidades().get(escolha-1)).getQntdHab() == 0) {
+                    throw new HabilidadeZerada();
+                }
+            } catch(EscolhaInvalida escolhaInvalida) {
+                System.out.println(escolhaInvalida);
+                escolhaValida = false;
+            } catch(HabilidadeZerada habilidadeZerada) {
+                System.out.println(habilidadeZerada);
+                escolhaValida = false;
+            } catch(Exception exception) {
+                System.out.println("Erro: escolha um numero inteiro valido");
+                escolhaValida = false;
+            }
+        } while(!(escolhaValida));
 
         if((escolha == 1)) {
             verificador.verificaHabilidadeZerada(player.getHabilidades().getFirst(), player, npc);

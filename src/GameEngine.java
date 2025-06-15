@@ -1,3 +1,4 @@
+import Excecoes.EscolhaInvalida;
 import Habilidades.Buff.BuffDebuffDano;
 import Habilidades.Buff.QuantAtaques;
 import Habilidades.Habilidade;
@@ -22,8 +23,8 @@ public class GameEngine {
         Gerador gerador = new Gerador();
         Verificador verificador = new Verificador();
         UI ui = new UI();
-        int winstreak = 0, escolha, auxEscolha;
-        boolean TemHabilidade = true;
+        int winstreak = 0, escolha = -1, auxEscolha;
+        boolean TemHabilidade = true, escolhaValida;
 
         while(player.getVidaAtual() > 0 && winstreak < 5) {
             ui.limpar();
@@ -61,8 +62,23 @@ public class GameEngine {
             if(player.getVidaAtual() > 0 && TemHabilidade) {
                 ui.absorverHabilidade(player, npc);
 
-                //try catch aqui para verificar se escolha é diferente do permitido (quant de habilidades que npc tem)
-                escolha = scanner.nextInt();
+                do {
+                    String entrada = scanner.nextLine();
+                    escolhaValida = true;
+                    try {
+                        escolha = Integer.parseInt(entrada);
+                        if(escolha < 0 || escolha > npc.getHabilidades().size()) {
+                            throw new EscolhaInvalida(escolha);
+                        }
+                    } catch(EscolhaInvalida escInvalida) {
+                        System.out.println(escInvalida);
+                        escolhaValida = false;
+                    } catch(NumberFormatException numberFormatException) {
+                        System.out.println("Digite um número inteiro válido");
+                        escolhaValida = false;
+                    }
+                } while(!(escolhaValida));
+
                 if(escolha != 0) {
                     ArrayList<Habilidade> habilidades = player.getHabilidades();
                     if(player.getHabilidades().size() == 4) {
@@ -77,7 +93,24 @@ public class GameEngine {
                     player.setHabilidades(habilidades);
                 } else {
                     ui.editarAtributos();
-                    escolha = scanner.nextInt();
+
+                    do {
+                        String entrada = scanner.nextLine();
+                        escolhaValida = true;
+                        try {
+                            escolha = Integer.parseInt(entrada);
+                            if(escolha < 1 || escolha > 3) {
+                                throw new EscolhaInvalida(escolha);
+                            }
+                        } catch(EscolhaInvalida escolhaInvalida) {
+                            System.out.println(escolhaInvalida);
+                            escolhaValida = false;
+                        } catch(Exception exception) {
+                            System.out.println("Erro: Digite um numero inteiro valido");
+                            escolhaValida = false;
+                        }
+                    } while(!(escolhaValida));
+
                     switch(escolha) {
                         case 1:
                             player.setAgilidade(player.getAgilidade() + npc.getAgilidade());
@@ -96,8 +129,6 @@ public class GameEngine {
                                 }
                             }
                             break;
-                        default:
-                            System.out.println("Você escolheu não melhorar nada");
                     }
                 }
                 winstreak++;

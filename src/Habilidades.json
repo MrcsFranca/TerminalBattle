@@ -36,7 +36,7 @@
       "nome": "ApostaTotal",
       "turnos": 3,
       "multiplicador": 1,
-      "TipoHavilidade": "sorte"
+      "TipoHabilidade": "sorte"
 
     }
   ]
