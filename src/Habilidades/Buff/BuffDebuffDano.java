@@ -1,5 +1,6 @@
 package Habilidades.Buff;
 
+import Habilidades.Habilidade;
 import Personagem.Personagem;
 /**
  * Classe que implementa um buff ou debuff de dano em um personagem
@@ -16,6 +17,11 @@ public class BuffDebuffDano extends HabilidadeBuffDebuff{
     public BuffDebuffDano(TipoBuffDebuff tipo, String nome, double multiplicador, int qntdHab) {
         super(tipo, nome, qntdHab);
         this.multiplicador = multiplicador;
+    }
+
+    public BuffDebuffDano(BuffDebuffDano hab) {
+        super(hab.getTipo(), hab.getNome(), hab.getQntdHab());
+        this.multiplicador = hab.multiplicador;
     }
 
     public double getMultiplicador() {
@@ -35,5 +41,9 @@ public class BuffDebuffDano extends HabilidadeBuffDebuff{
 
     public int getQntHab(){
         return getQntdHab();
+    }
+
+    public static BuffDebuffDano copiar(BuffDebuffDano hab){
+        return new BuffDebuffDano(hab);
     }
 }

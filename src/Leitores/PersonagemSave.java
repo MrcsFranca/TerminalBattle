@@ -1,6 +1,8 @@
 package Leitores;
 
+import Habilidades.Habilidade;
 import Habilidades.TipoHabilidade;
+import Personagem.Personagem;
 
 import java.util.ArrayList;
 

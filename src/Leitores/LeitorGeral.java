@@ -3,7 +3,9 @@ package Leitores;
 import Excecoes.ArquivoVazio;
 import Excecoes.EscolhaInvalida;
 import Excecoes.PersonagemSemHab;
+import Habilidades.Buff.BuffDebuffDano;
 import Habilidades.Buff.HabilidadeBuffDebuff;
+import Habilidades.Buff.QuantAtaques;
 import Habilidades.Habilidade;
 import Habilidades.HabilidadeDanoCura;
 import Personagem.*;
@@ -43,7 +45,8 @@ public class LeitorGeral<T> {
     public static Gson CriaLeitorHab(){
         RuntimeTypeAdapterFactory<Habilidade> typeFactory = RuntimeTypeAdapterFactory.of(Habilidade.class, "tipoHab")
                 .registerSubtype(HabilidadeDanoCura.class, "DanoCura")
-                .registerSubtype(HabilidadeBuffDebuff.class,"BuffDebuff");
+                .registerSubtype(BuffDebuffDano.class,"BuffDebuff")
+                .registerSubtype(QuantAtaques.class, "MultAtaques");
 
         return new GsonBuilder().registerTypeAdapterFactory(typeFactory).setPrettyPrinting().create();
     }
@@ -68,7 +71,17 @@ public class LeitorGeral<T> {
             for(String nomeHab: ps.getHabilidades()){
                 Habilidade hab = getHabFromJson(nomeHab);
                 if(hab != null){
-                    habilidadesReais.add(hab);
+                    if(hab instanceof BuffDebuffDano){
+                        habilidadesReais.add(BuffDebuffDano.copiar((BuffDebuffDano)hab));
+                    }
+                    if(hab instanceof HabilidadeDanoCura){
+                        habilidadesReais.add(HabilidadeDanoCura.copiar((HabilidadeDanoCura) hab));
+                    }
+                    if(hab instanceof QuantAtaques){
+                        habilidadesReais.add(QuantAtaques.copiar((QuantAtaques)hab));
+                    }
+
+                    //habilidadesReais.add(hab);
                 }
                 else{
                     throw new EscolhaInvalida(nomeHab);

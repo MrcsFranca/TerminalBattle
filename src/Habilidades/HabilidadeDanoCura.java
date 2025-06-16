@@ -27,6 +27,13 @@ public class HabilidadeDanoCura implements Habilidade {
         this.elemento = elemento;
         this.qntHab = qntdHab;
     }
+    public HabilidadeDanoCura(HabilidadeDanoCura outra){
+        this.valor = outra.valor;
+        this.nome = outra.nome;
+        this.isCura = outra.isCura;
+        this.elemento = outra.elemento;
+        this.qntHab = outra.qntHab;
+    }
     /**
      * Classe que torna o nome de uma habilidade
      * @author Caua Monteiro
@@ -70,6 +77,10 @@ public class HabilidadeDanoCura implements Habilidade {
                 alvo.setVidaAtual(alvo.getVidaAtual() + valor);
             }
         }
+    }
+
+    public static HabilidadeDanoCura copiar(HabilidadeDanoCura hab){
+        return new HabilidadeDanoCura(hab);
     }
 
     /**

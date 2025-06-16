@@ -1,7 +1,7 @@
 [
   {
     "tipoHab": "DanoCura",
-    "valor": 10,
+    "valor": 20,
     "nome": "Fireball",
     "isCura": false,
     "elemento": "fogo",
@@ -9,7 +9,7 @@
   },
   {
     "tipoHab": "DanoCura",
-    "valor": 10,
+    "valor": 15,
     "nome": "WaterWrip",
     "isCura": false,
     "elemento": "agua",
@@ -17,10 +17,90 @@
   },
   {
     "tipoHab": "DanoCura",
-    "valor": 10,
+    "valor": 15,
     "nome": "HellBlade",
     "isCura": false,
     "elemento": "terra",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "IceFang",
+    "isCura": false,
+    "elemento": "gelo",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "ThunderBall",
+    "isCura": false,
+    "elemento": "choque",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "MegaScream",
+    "isCura": false,
+    "elemento": "som",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 1000,
+    "nome": "HollowPurple",
+    "isCura": false,
+    "elemento": "gravidade",
+    "qntHab": 1
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "PsyStrike",
+    "isCura": false,
+    "elemento": "psiquico",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "PoisonGas",
+    "isCura": false,
+    "elemento": "veneno",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "WineWip",
+    "isCura": false,
+    "elemento": "planta",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "Stare",
+    "isCura": false,
+    "elemento": "sorte",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "DynamicPunch",
+    "isCura": false,
+    "elemento": "lutador",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
+    "nome": "HighKick",
+    "isCura": false,
+    "elemento": "lutador",
     "qntHab": 5
   },
   {
@@ -34,14 +114,22 @@
   {
     "tipoHab": "DanoCura",
     "valor": 10,
-    "nome": "WindWirl",
+    "nome": "Scrach",
     "isCura": false,
-    "elemento": "som",
+    "elemento": "normal",
     "qntHab": 5
   },
   {
     "tipoHab": "DanoCura",
-    "valor": 5,
+    "valor": 20,
+    "nome": "WindWirl",
+    "isCura": false,
+    "elemento": "ar",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 20,
     "nome": "WaterHeal",
     "isCura": true,
     "elemento": "agua",
@@ -57,7 +145,7 @@
   },
   {
     "tipoHab": "DanoCura",
-    "valor": 5,
+    "valor": 15,
     "nome": "SeeNature",
     "isCura": true,
     "elemento": "planta",
@@ -65,10 +153,62 @@
   },
   {
     "tipoHab": "DanoCura",
-    "valor": 5,
+    "valor": 10,
     "nome": "Warming",
     "isCura": true,
     "elemento": "fogo",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 10,
+    "nome": "PeacefulPlace",
+    "isCura": true,
+    "elemento": "som",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 10,
+    "nome": "Energizing",
+    "isCura": true,
+    "elemento": "choque",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 10,
+    "nome": "Meditate",
+    "isCura": true,
+    "elemento": "psiquico",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "BuffDebuff",
+    "valor": 10,
+    "nome": "ColdBath",
+    "isCura": true,
+    "elemento": "gelo",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "BuffDebuff",
+    "tipo": "BuffDano",
+    "nome": "TotalFocus",
+    "multiplicador": 0.5,
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "BuffDebuff",
+    "tipo": "BuffDano",
+    "nome": "DoubleAttack",
+    "multiplicador": 1.0,
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "MultAtaques",
+    "tipo": "MultiAtaques",
+    "nome": "BonusAtaque",
     "qntHab": 5
   }
 ]

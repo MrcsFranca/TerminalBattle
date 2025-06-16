@@ -14,6 +14,10 @@ public class QuantAtaques extends HabilidadeBuffDebuff {
     public QuantAtaques(TipoBuffDebuff tipo, String nome, int qntdHab) {
         super(tipo, nome, qntdHab);
     }
+
+    public QuantAtaques(QuantAtaques hab){
+        super(hab.getTipo(), hab.getNome(), hab.getQntdHab());
+    }
     /**
      * Metodo para um personagem usar uma habilidade em um alvo
      * @author Caua Monteiro
@@ -44,5 +48,9 @@ public class QuantAtaques extends HabilidadeBuffDebuff {
     }
     public int getQntHab(){
         return getQntdHab();
+    }
+
+    public static QuantAtaques copiar(QuantAtaques hab){
+        return new QuantAtaques(hab);
     }
 }

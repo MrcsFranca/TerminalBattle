@@ -31,7 +31,11 @@ public class Acoes {
                 escolha = Integer.parseInt(entrada);
                 if(escolha < 1 || escolha > player.getHabilidades().size()) {
                     throw new EscolhaInvalida(escolha);
-                } else if(player.getHabilidades().get(escolha-1).getQntHab() == 0){
+                } else if((player.getHabilidades().get(escolha-1).getClass() == HabilidadeDanoCura.class) && ((HabilidadeDanoCura)player.getHabilidades().get(escolha-1)).getQntHab() == 0) {
+                    throw new HabilidadeZerada();
+                } else if((player.getHabilidades().get(escolha-1).getClass() == BuffDebuffDano.class) && ((BuffDebuffDano)player.getHabilidades().get(escolha-1)).getQntdHab() == 0) {
+                    throw new HabilidadeZerada();
+                } else if((player.getHabilidades().get(escolha-1).getClass() == QuantAtaques.class) && ((QuantAtaques)player.getHabilidades().get(escolha-1)).getQntdHab() == 0) {
                     throw new HabilidadeZerada();
                 }
             } catch(EscolhaInvalida escolhaInvalida) {

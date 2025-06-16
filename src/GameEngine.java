@@ -25,7 +25,7 @@ public class GameEngine {
         int winstreak = 0, escolha = -1, auxEscolha;
         boolean TemHabilidade = true, escolhaValida;
 
-        while(player.getVidaAtual() > 0 && winstreak < 5) {
+        while(player.getVidaAtual() > 0 && winstreak < 10) {
             ui.limpar();
             System.out.println("----- "+ (winstreak + 1) + "ª batalha -----");
 
@@ -135,5 +135,7 @@ public class GameEngine {
                 ui.perdeu(player, TemHabilidade, winstreak);
             }
         }
+        if(winstreak >= 10)
+        ui.venceu(player);
     }
 }

@@ -3,8 +3,13 @@ import Habilidades.Buff.HabilidadeBuffDebuff;
 import Habilidades.Buff.QuantAtaques;
 import Habilidades.Habilidade;
 import Habilidades.HabilidadeDanoCura;
+import Leitores.EscritaJson;
+import Leitores.LeitorGeral;
 import Personagem.Personagem;
 import Personagem.Player;
+
+import java.util.List;
+
 /**
  * Classe que define os métodos da saída no terminal da interface de usuário
  */
@@ -78,6 +83,15 @@ public class UI {
         }
         ((Player) player).setWinStreak(winstreak);
         System.out.println("Você perdeu com uma winstreak de: " + ((Player) player).getWinStreak());
+        List<Personagem> save = LeitorGeral.PersonagensGerais();
+        EscritaJson.SalvaPersonagem(save , player);
+    }
+
+    public void venceu(Personagem player){
+        System.out.println("Meus parabens...");
+        System.out.println("VOCE VENCEU O TERMINAL BATTLE");
+        List<Personagem> save = LeitorGeral.PersonagensGerais();
+        EscritaJson.SalvaPersonagem(save , player);
     }
 
     /**

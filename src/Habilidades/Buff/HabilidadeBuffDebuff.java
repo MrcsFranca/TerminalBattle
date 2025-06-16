@@ -20,6 +20,12 @@ public abstract class HabilidadeBuffDebuff implements Habilidade {
         this.nome = nome;
         this.qntdHab = qntdHab;
     }
+
+    public HabilidadeBuffDebuff(HabilidadeBuffDebuff hab){
+        this.tipo = hab.tipo;
+        this.nome = hab.nome;
+        this.qntdHab = hab.qntdHab;
+    }
     /**
      * Metodo para receber o nome da habilidade
      * @author Caua Monteiro
@@ -27,6 +33,16 @@ public abstract class HabilidadeBuffDebuff implements Habilidade {
      */
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome){this.nome = nome;}
+
+    public TipoBuffDebuff getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoBuffDebuff tipo) {
+        this.tipo = tipo;
     }
 
     public void setQntdHab(int qntdHab) {
@@ -46,6 +62,5 @@ public abstract class HabilidadeBuffDebuff implements Habilidade {
     public void exibe(Personagem dono, Personagem alvo) {
         System.out.println("> Usando " + nome + " de " + tipo);
     }
-
 
 }
