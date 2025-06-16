@@ -15,17 +15,18 @@ public class Player extends Personagem {
      * @param nome Representa o nome do personagem do jogador
      * @param vidaMax Representa a vida maxima do personagem jogavel
      * @param vidaAtual Representa a vida atual do personagem jogavel
-     * @param qntdHab Representa a quantidade de habilidades que o personagem jogavel pode possuir
+     * @param quantAtaques Representa a quantidade de habilidades que o personagem jogavel pode possuir
      * @param defesa Representa a quantidade de defesa que o personagem jogavel possui
      * @param agilidade Representa a quantidade de agilidade que o personagem jogavel possui
      * @param habilidades Representa a lista de habilidades que o personagem jogavel possui
      * @param tipo Representa o tipo do personagem jogavel, isto é, o elemento dele
      * @param winsStreak Representa a quantidade de vitórias do personagem jogavel na partida atual
      */
-    public Player(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade> habilidades, TipoHabilidade tipo, int winsStreak){
-        super(nome, vidaMax, vidaAtual, defesa, agilidade, habilidades, tipo);
+    public Player(String nome, int vidaMax, int defesa, int agilidade, int quantAtaques, double vidaAtual, double multDano, double multAgil, double multDef, ArrayList<Habilidade> habilidades, TipoHabilidade tipo, boolean boolBuffCarac, boolean boolBuffDano, int winsStreak) {
+        super(nome, vidaMax, defesa, agilidade, quantAtaques, vidaAtual, multDano, multAgil, multDef, habilidades, tipo, boolBuffCarac, boolBuffDano);
         this.winsStreak = winsStreak;
     }
+
     /**
      * @author Lucas Polidorio
      * @return Retorna o numero de vitorias do personagem jogavel na partida atual

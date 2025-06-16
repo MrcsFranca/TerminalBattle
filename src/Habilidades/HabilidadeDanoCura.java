@@ -6,11 +6,11 @@ import Personagem.Personagem;
  * @author Caua Monteiro
  */
 public class HabilidadeDanoCura implements Habilidade {
-    private Enum nome;
-    private int qntdHab;
     private double valor;
+    private String nome;
     private boolean isCura;
     private TipoHabilidade elemento;
+    private int qntHab;
     /**
      * Construtor de uma habilidade de cura ou dano
      * @author Marcos França
@@ -19,43 +19,39 @@ public class HabilidadeDanoCura implements Habilidade {
      * @param isCura Booleano que determina se a habilidade é de cura ou não
      * @param elemento Tipo da habilidade
      * @param qntdHab Quantidade de vezes que a habilidade pode ser utilizada
-     * @param <T> Tipo generico que extende os Enums para que o atributo nome utilize
      */
-    public <T extends Enum> HabilidadeDanoCura(double valor, T nome, boolean isCura, TipoHabilidade elemento, int qntdHab){
+    public HabilidadeDanoCura(double valor, String nome, boolean isCura, TipoHabilidade elemento, int qntdHab){
         this.valor = valor;
         this.nome = nome;
         this.isCura = isCura;
         this.elemento = elemento;
-        this.qntdHab = qntdHab;
+        this.qntHab = qntdHab;
     }
     /**
      * Classe que torna o nome de uma habilidade
      * @author Caua Monteiro
      * @return Retorna o nome de uma habilidade
      */
-    public Enum getNome() {
-        return nome;
-    }
+    public double getValor() {return valor;}
 
-    public void setQntdHab(int qntdHab) {
-        this.qntdHab = qntdHab;
-    }
+    public void setValor(double valor) {this.valor = valor;}
 
-    public int getQntdHab() {
-        return qntdHab;
-    }
+    @Override
+    public String getNome() {return nome;}
 
-    public boolean getIsCura() {
-        return isCura;
-    }
+    public void setNome(String nome) {this.nome = nome;}
 
-    public double getDano(){
-        return valor;
-    }
+    public boolean isCura() {return isCura;}
 
-    public TipoHabilidade getElemento(){
-        return elemento;
-    }
+    public void setCura(boolean cura) {isCura = cura;}
+
+    public TipoHabilidade getElemento() {return elemento;}
+
+    public void setElemento(TipoHabilidade elemento) {this.elemento = elemento;}
+
+    public int getQntHab() {return qntHab;}
+
+    public void setQntHab(int qntHab) {this.qntHab = qntHab;}
     /**
      * Define a utilização de uma habilidade, verificando se é uma cura ou não
      * @author Caua Monteiro
@@ -84,5 +80,11 @@ public class HabilidadeDanoCura implements Habilidade {
     @Override
     public void exibe(Personagem dono, Personagem alvo) {
         System.out.println("> " + dono.getNome() + " usou " + nome + " em " + alvo.getNome());
+    }
+
+    @Override
+    public String toString() {
+        return "hab: " + nome +
+                "|| quantHab: " + qntHab;
     }
 }

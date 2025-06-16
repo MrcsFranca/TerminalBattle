@@ -6,16 +6,16 @@ import Personagem.Personagem;
  * Classe para implementar uma habilidade de buff ou debuff
  */
 public abstract class HabilidadeBuffDebuff implements Habilidade {
-    private NomeHabilidadeBuffDebuff nome;
-    private int qntdHab = 0;
     private TipoBuffDebuff tipo;
+    private String nome;
+    private int qntdHab;
     /**
      * Construtor da habilidade que sera um buff ou debuff de Personagem
      * @author Caua Monteiro
      * @param tipo Tipo/Elemento da habilidade
      * @param nome Nome da habilidade
      */
-    public HabilidadeBuffDebuff(TipoBuffDebuff tipo, NomeHabilidadeBuffDebuff nome, int qntdHab){
+    public HabilidadeBuffDebuff(TipoBuffDebuff tipo, String nome, int qntdHab){
         this.tipo = tipo;
         this.nome = nome;
         this.qntdHab = qntdHab;
@@ -25,7 +25,7 @@ public abstract class HabilidadeBuffDebuff implements Habilidade {
      * @author Caua Monteiro
      * @return Retorna o nome da habilidade de jogo
      */
-    public NomeHabilidadeBuffDebuff getNome() {
+    public String getNome() {
         return nome;
     }
 
@@ -46,4 +46,6 @@ public abstract class HabilidadeBuffDebuff implements Habilidade {
     public void exibe(Personagem dono, Personagem alvo) {
         System.out.println("> Usando " + nome + " de " + tipo);
     }
+
+
 }

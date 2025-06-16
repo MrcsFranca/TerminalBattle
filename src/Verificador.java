@@ -12,7 +12,7 @@ public class Verificador {
         boolean temHabilidade = false;
         int i = 0;
         while(i < player.getHabilidades().size() && !temHabilidade) {
-            if(((HabilidadeDanoCura) player.getHabilidades().get(i)).getQntdHab() > 0) {
+            if(((HabilidadeDanoCura) player.getHabilidades().get(i)).getQntHab() > 0) {
                 temHabilidade = true;
             }
             i++;
@@ -22,7 +22,7 @@ public class Verificador {
 
     public void verificaHabilidadeZerada(Habilidade habilidade, Personagem dono, Personagem alvo) {
         if(habilidade.getClass() == HabilidadeDanoCura.class) {
-            if(((HabilidadeDanoCura) habilidade).getQntdHab() > 0) {
+            if(((HabilidadeDanoCura) habilidade).getQntHab() > 0) {
                 verificaTipoHabilidade(habilidade, dono, alvo);
             } else {
                 System.out.println(habilidade.getNome() + " acabou e você não consegue mais usar");
@@ -45,15 +45,15 @@ public class Verificador {
     public void verificaTipoHabilidade(Habilidade habilidade, Personagem dono, Personagem alvo) {
         int qntdHab = 0;
         if(habilidade.getClass() == HabilidadeDanoCura.class) {
-            if(((HabilidadeDanoCura) habilidade).getIsCura()) {
+            if(((HabilidadeDanoCura) habilidade).isCura()) {
                 dono.atacar(dono, dono, habilidade);
                 habilidade.exibe(dono, dono);
             } else {
                 dono.atacar(dono, alvo, habilidade);
                 habilidade.exibe(dono, alvo);
             }
-            qntdHab = (((HabilidadeDanoCura) habilidade).getQntdHab());
-            ((HabilidadeDanoCura) habilidade).setQntdHab(--qntdHab);
+            qntdHab = (((HabilidadeDanoCura) habilidade).getQntHab());
+            ((HabilidadeDanoCura) habilidade).setQntHab(--qntdHab);
         } else if(habilidade.getClass() == BuffDebuffDano.class) {
             dono.atacar(dono, alvo, habilidade);
             habilidade.exibe(dono, alvo);

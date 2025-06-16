@@ -1,5 +1,5 @@
 import Personagem.*;
-import Habilidades.*;
+
 /**
  * Classe que abriga a main para inicializar o jogo
  */

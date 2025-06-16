@@ -1,0 +1,74 @@
+[
+  {
+    "tipoHab": "DanoCura",
+    "valor": 10,
+    "nome": "Fireball",
+    "isCura": false,
+    "elemento": "fogo",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 10,
+    "nome": "WaterWrip",
+    "isCura": false,
+    "elemento": "agua",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 10,
+    "nome": "HellBlade",
+    "isCura": false,
+    "elemento": "terra",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 10,
+    "nome": "Bite",
+    "isCura": false,
+    "elemento": "normal",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 10,
+    "nome": "WindWirl",
+    "isCura": false,
+    "elemento": "som",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 5,
+    "nome": "WaterHeal",
+    "isCura": true,
+    "elemento": "agua",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 5,
+    "nome": "DeepBreath",
+    "isCura": true,
+    "elemento": "normal",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 5,
+    "nome": "SeeNature",
+    "isCura": true,
+    "elemento": "planta",
+    "qntHab": 5
+  },
+  {
+    "tipoHab": "DanoCura",
+    "valor": 5,
+    "nome": "Warming",
+    "isCura": true,
+    "elemento": "fogo",
+    "qntHab": 5
+  }
+]

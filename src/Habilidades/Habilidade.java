@@ -21,5 +21,7 @@ public interface Habilidade {
       * Metodo que retorna um enum que possui os nomes das habilidades
       * @return Retorna o nome da habilidade
       */
-     Enum getNome();
+     String getNome();
+
+     int getQntHab();
 }

@@ -13,7 +13,7 @@ public class BuffDebuffDano extends HabilidadeBuffDebuff{
      * @param nome Nome da habilidade
      * @param multiplicador Multiplicador de efeito da habilidade
      */
-    public BuffDebuffDano(TipoBuffDebuff tipo, NomeHabilidadeBuffDebuff nome, double multiplicador, int qntdHab) {
+    public BuffDebuffDano(TipoBuffDebuff tipo, String nome, double multiplicador, int qntdHab) {
         super(tipo, nome, qntdHab);
         this.multiplicador = multiplicador;
     }
@@ -31,5 +31,9 @@ public class BuffDebuffDano extends HabilidadeBuffDebuff{
     public void usaHab(Personagem dono, Personagem alvo) {
         alvo.setBoolBuffDano(true);
         alvo.setMultDano(alvo.getMultDano() * multiplicador);
+    }
+
+    public int getQntHab(){
+        return getQntdHab();
     }
 }

@@ -1,31 +1,18 @@
-package Personagem;
+package Leitores;
 
-import Habilidades.Habilidade;
 import Habilidades.TipoHabilidade;
 
-import java.util.*;
-/**
- * Classe abstrata que representa os componentes principais que qualquer personagem, seja o player, seja um NPC, irã possuir
- */
-public abstract class Personagem {
+import java.util.ArrayList;
+
+public class PersonagemSave {
     private String nome;
     private int vidaMax, defesa, agilidade, quantAtaques;
     private double vidaAtual, multDano, multAgil, multDef;
-    private ArrayList<Habilidade> habilidades;
+    private ArrayList<String> habilidades;
     private TipoHabilidade tipo;
     private boolean BoolBuffCarac, BoolBuffDano;
-    /**
-     * Construtor da super-classe que define os atributos principais de um personagem
-     * @author Lucas Polidorio
-     * @param nome Representa o nome do peronagem
-     * @param vidaMax Representa a vida máxima de um personagem
-     * @param vidaAtual Representa a vida atual de um personagem
-     * @param defesa Representa a quantidade de defesa de um personagem
-     * @param agilidade Representa a quantidade de agilidade de um personagem, representando quem vai atacar primeiro em um combate
-     * @param habilidades Um arrayList de habilidades que representa quais habilidades um personagem irá começar
-     * @param tipo Representa o tipo do personagem, isto é, o elemento dele
-     */
-    public Personagem(String nome, int vidaMax, int defesa, int agilidade, int quantAtaques, double vidaAtual, double multDano, double multAgil, double multDef, ArrayList<Habilidade> habilidades, TipoHabilidade tipo, boolean boolBuffCarac, boolean boolBuffDano) {
+
+    public PersonagemSave(String nome, int vidaMax, int defesa, int agilidade, int quantAtaques, double vidaAtual, double multDano, double multAgil, double multDef, ArrayList<String> habilidades, TipoHabilidade tipo, boolean boolBuffCarac, boolean boolBuffDano) {
         this.nome = nome;
         this.vidaMax = vidaMax;
         this.defesa = defesa;
@@ -113,11 +100,11 @@ public abstract class Personagem {
         this.multDef = multDef;
     }
 
-    public ArrayList<Habilidade> getHabilidades() {
+    public ArrayList<String> getHabilidades() {
         return habilidades;
     }
 
-    public void setHabilidades(ArrayList<Habilidade> habilidades) {
+    public void setHabilidades(ArrayList<String> habilidades) {
         this.habilidades = habilidades;
     }
 
@@ -145,12 +132,22 @@ public abstract class Personagem {
         BoolBuffDano = boolBuffDano;
     }
 
-    /**
-     * Método abstrato para ataques. Sera implementado em sub-classes de personagem
-     * @author Lucas Polidorio
-     * @param dono O personagem que esta atacando
-     * @param alvo O alvo que sera atacado
-     * @param hab A habilidade que esta sendo usada para atacar
-     */
-    public abstract void atacar(Personagem dono, Personagem alvo, Habilidade hab);
+    @Override
+    public String toString() {
+        return "PersonagemSave{" +
+                "nome='" + nome + '\'' +
+                ", vidaMax=" + vidaMax +
+                ", defesa=" + defesa +
+                ", agilidade=" + agilidade +
+                ", quantAtaques=" + quantAtaques +
+                ", vidaAtual=" + vidaAtual +
+                ", multDano=" + multDano +
+                ", multAgil=" + multAgil +
+                ", multDef=" + multDef +
+                ", habilidades=" + habilidades +
+                ", tipo=" + tipo +
+                ", BoolBuffCarac=" + BoolBuffCarac +
+                ", BoolBuffDano=" + BoolBuffDano +
+                '}';
+    }
 }

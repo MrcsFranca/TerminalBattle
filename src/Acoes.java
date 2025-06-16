@@ -2,6 +2,7 @@ import Excecoes.EscolhaInvalida;
 import Excecoes.HabilidadeZerada;
 import Habilidades.Buff.BuffDebuffDano;
 import Habilidades.Buff.QuantAtaques;
+import Habilidades.Habilidade;
 import Habilidades.HabilidadeDanoCura;
 import Personagem.Personagem;
 
@@ -30,11 +31,7 @@ public class Acoes {
                 escolha = Integer.parseInt(entrada);
                 if(escolha < 1 || escolha > player.getHabilidades().size()) {
                     throw new EscolhaInvalida(escolha);
-                } else if((player.getHabilidades().get(escolha-1).getClass() == HabilidadeDanoCura.class) && ((HabilidadeDanoCura)player.getHabilidades().get(escolha-1)).getQntdHab() == 0) {
-                    throw new HabilidadeZerada();
-                } else if((player.getHabilidades().get(escolha-1).getClass() == BuffDebuffDano.class) && ((BuffDebuffDano)player.getHabilidades().get(escolha-1)).getQntdHab() == 0) {
-                    throw new HabilidadeZerada();
-                } else if((player.getHabilidades().get(escolha-1).getClass() == QuantAtaques.class) && ((QuantAtaques)player.getHabilidades().get(escolha-1)).getQntdHab() == 0) {
+                } else if(player.getHabilidades().get(escolha-1).getQntHab() == 0){
                     throw new HabilidadeZerada();
                 }
             } catch(EscolhaInvalida escolhaInvalida) {
@@ -61,6 +58,7 @@ public class Acoes {
             System.out.println("Você não possui essa habilidade");
         }
     }
+
     /**
      * Metodo que define a ação de um NPC, utilizando uma habilidade
      * @author Marcos França

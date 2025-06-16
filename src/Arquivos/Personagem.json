@@ -1,0 +1,38 @@
+[
+  {
+    "nome": "Alquimista",
+    "vidaMax": 50,
+    "defesa": 5,
+    "agilidade": 5,
+    "quantAtaques": 3,
+    "vidaAtual": 50,
+    "multDano": 1,
+    "multAgil": 1,
+    "multDef": 1,
+    "habilidades": [
+      "Fireball",
+      "Warming"
+    ],
+    "tipo": "fogo",
+    "BoolBuffCarac": false,
+    "BoolBuffDano": false
+  },
+  {
+    "nome": "Pescador",
+    "vidaMax": 50,
+    "defesa": 5,
+    "agilidade": 5,
+    "quantAtaques": 3,
+    "vidaAtual": 50,
+    "multDano": 1,
+    "multAgil": 1,
+    "multDef": 1,
+    "habilidades": [
+      "WaterWrip",
+      "WaterHeal"
+    ],
+    "tipo": "agua",
+    "BoolBuffCarac": false,
+    "BoolBuffDano": false
+  }
+]

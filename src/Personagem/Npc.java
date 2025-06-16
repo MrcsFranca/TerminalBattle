@@ -8,7 +8,6 @@ import java.util.ArrayList;
  * Sub-classe de Personagem que implementa os NPC's (Personagens jogados pela maquina)
  */
 public class Npc extends Personagem{
-    private String nome, personalidade;
     /**
      * Construtor do objeto do personagem NPC
      * @author Lucas Polidorio
@@ -20,10 +19,10 @@ public class Npc extends Personagem{
      * @param habilidades Um arrayList de habilidades que representa quais habilidades um personagem NPC irá começar
      * @param tipo Representa o tipo do personagem NPC, isto é, o elemento dele
      */
-    public Npc(String nome, int vidaMax, int vidaAtual, int qntdHab, int defesa, int agilidade, ArrayList<Habilidade> habilidades, TipoHabilidade tipo){
-            super(nome, vidaMax, vidaAtual, defesa, agilidade, habilidades, tipo);
-            this.nome = nome;
+    public Npc(String nome, int vidaMax, int defesa, int agilidade, int quantAtaques, double vidaAtual, double multDano, double multAgil, double multDef, ArrayList<Habilidade> habilidades, TipoHabilidade tipo, boolean boolBuffCarac, boolean boolBuffDano) {
+        super(nome, vidaMax, defesa, agilidade, quantAtaques, vidaAtual, multDano, multAgil, multDef, habilidades, tipo, boolBuffCarac, boolBuffDano);
     }
+
     /**
      * Método para ataques do personagem NPC.
      * @author Lucas Polidorio

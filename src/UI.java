@@ -29,7 +29,7 @@ public class UI {
         System.out.println(personagem.getNome() + ", escolha uma de suas habilidades...");
         for(Habilidade elementos : personagem.getHabilidades()) {
             if(elementos.getClass() == HabilidadeDanoCura.class) {
-                System.out.printf("[" + iterador + "] " + elementos.getNome() + " (Valor da habilidade: %.2f) (Usos: " + ((HabilidadeDanoCura) personagem.getHabilidades().get(iterador - 1)).getQntdHab() + ")\n", (((HabilidadeDanoCura) (elementos)).getDano()) * personagem.getMultDano());
+                System.out.printf("[" + iterador + "] " + elementos.getNome() + " (Valor da habilidade: %.2f) (Usos: " + ((HabilidadeDanoCura) personagem.getHabilidades().get(iterador - 1)).getQntHab() + ")\n", (((HabilidadeDanoCura) (elementos)).getValor()) * personagem.getMultDano());
             } else if(elementos.getClass() == BuffDebuffDano.class) {
                 System.out.printf("[" + iterador + "] " + elementos.getNome() + " (Valor do multiplicador: %.2f) (Usos: " + ((HabilidadeBuffDebuff) personagem.getHabilidades().get(iterador - 1)).getQntdHab() + ")\n",((BuffDebuffDano) (elementos)).getMultiplicador());
             } else if(elementos.getClass() == QuantAtaques.class) {

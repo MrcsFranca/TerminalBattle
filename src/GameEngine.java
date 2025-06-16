@@ -4,7 +4,6 @@ import Habilidades.Buff.QuantAtaques;
 import Habilidades.Habilidade;
 import Habilidades.HabilidadeDanoCura;
 import Personagem.Personagem;
-import Personagem.Player;
 import Personagem.Gerador;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -121,7 +120,7 @@ public class GameEngine {
                         case 3:
                             for(Habilidade elementos : player.getHabilidades()) {
                                 if(elementos.getClass() == HabilidadeDanoCura.class) {
-                                    ((HabilidadeDanoCura) elementos).setQntdHab(((HabilidadeDanoCura) elementos).getQntdHab() + 5);
+                                    ((HabilidadeDanoCura) elementos).setQntHab(((HabilidadeDanoCura) elementos).getQntHab() + 5);
                                 } else if(elementos.getClass() == BuffDebuffDano.class) {
                                     ((BuffDebuffDano) elementos).setQntdHab(((BuffDebuffDano) elementos).getQntdHab() + 5);
                                 } else if(elementos.getClass() == QuantAtaques.class) {

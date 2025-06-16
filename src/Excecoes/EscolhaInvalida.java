@@ -1,8 +1,8 @@
 package Excecoes;
 
 public class EscolhaInvalida extends RuntimeException {
-    int escolha;
-    public EscolhaInvalida(int escolha) {
+    Object escolha;
+    public EscolhaInvalida(Object escolha) {
         this.escolha = escolha;
     }
 
