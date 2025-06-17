@@ -20,7 +20,7 @@ Adapte-se ou morra! Esse é o lema do mundo de terminal battle. Em terras em que
 
 Esse projeto foi feito para rodar no terminal.
 
-Primeiro você deve clonar o repositório, depois compilar os arquivos do jogo:
+Primeiro você deve clonar o repositório, depois compilar os arquivos do jogo (Dentro do diretório src):
 
 ```bash
   javac TerminalBattleApp.java
