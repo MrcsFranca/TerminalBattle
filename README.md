@@ -20,12 +20,15 @@ Adapte-se ou morra! Esse é o lema do mundo de terminal battle. Em terras em que
 
 Esse projeto foi feito para rodar no terminal.
 
-Primeiro você deve clonar o repositório,
-
-Depois disso, basta apenas executar o projeto em java
+Primeiro você deve clonar o repositório, depois compilar os arquivos do jogo:
 
 ```bash
-  java TerminalBattleApp.java
+  javac TerminalBattleApp.java
+```
+Depois disso, basta apenas executar o jogo
+
+```bash
+  java TerminalBattleApp
 ```
 ## 📝 License
 This project has the [MIT](https://choosealicense.com/licenses/mit/) license.
